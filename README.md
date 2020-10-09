@@ -1,0 +1,1 @@
+# Emscripten Loader for Webpack
