@@ -4,8 +4,8 @@ const {dir} = require("tmp-promise");
 const {exec} = require("child_process");
 const {getOptions} = require("loader-utils");
 
-const readFile = (path) => new Promise((resolve, reject) => {
-    fs.readFile(path, "utf-8", (err, data) => {
+const readFile = (path, type) => new Promise((resolve, reject) => {
+    fs.readFile(path, type, (err, data) => {
         if (err)
             reject(err);
         resolve(data);
@@ -57,8 +57,8 @@ module.exports = function loader() {
                 callback(`${cmd} failed to run, with exit code ${code}!`);
 
             try {
-                const data_js = await readFile(jsPath);
-                const data_wasm = await readFile(wasmPath);
+                const data_js = await readFile(jsPath, "utf-8");
+                const data_wasm = await readFile(wasmPath, null);
 
                 this.emitFile(`${fileName}.wasm`, data_wasm);
 
