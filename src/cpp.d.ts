@@ -6,3 +6,6 @@ declare module "*.cpp" {
 declare module "*.c" {
     export default function(): Promise<Module>;
 }
+declare module "*.wasm" {
+    export default function(): Promise<Module>;
+}
