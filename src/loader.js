@@ -74,6 +74,8 @@ module.exports = function loader() {
                             Object.entries(data || {}).forEach(([key, val]) => {
                                 Module[key] = val;
                             });
+
+                            return Module;
                         });
                     }
                 `);
